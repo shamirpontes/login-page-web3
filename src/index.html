@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="=en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> 
+            Portal de Acesso
+        </title>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+                box-sizing: border-box;
+            }
+            body{
+                background-color:rgb(5, 5, 5) ;
+            }
+            div{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+            button{
+                width: 220px;
+                height: 40px;
+                background: rgb(228, 228, 228);
+                border: 0;
+                cursor: pointer;
+                color: rgb(1, 1, 1);
+
+            }
+            h3{
+                margin-top: 10px;
+                color: white;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+        <button>Login</button>
+        <h3>Wallet ID: <span></span></h3>
+    </div>
+    <script>
+        if (window.ethereum){
+            document.querySelector('button').addEventListener('click',async ()=>{
+            try{
+            const accounts = await ethereum.request({method:'eth_requestAccounts'});
+            account = accounts[0];
+            document.querySelector('span').innerHTML=account;
+        }catch(e){}
+        })  
+
+        }else{
+            alert("Não foi possivel acessar sua conta, conecte-se a sua wallet");
+        }
+    </script>
+
+    </body>
+</html>
